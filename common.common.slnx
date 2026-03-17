@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/common/">
-    <Project Path="Commmon.Data/Common.Data.csproj" Id="eb3bae0c-19d9-4e76-b6d5-a63785893324" />
     <Project Path="Common.Common/Common.Common.csproj" Id="d00a308e-d373-4f5b-8e11-239a40560ef5" />
+    <Project Path="Common.Data/Common.Data.csproj" Id="3dc387be-ed97-4ade-ad8c-6ea15d996f50" />
     <Project Path="Common.Identity.API/Common.Identity.API.csproj" Id="81c2c22c-3dc9-4dad-b932-a1fe03a56e3e" />
   </Folder>
 </Solution>
