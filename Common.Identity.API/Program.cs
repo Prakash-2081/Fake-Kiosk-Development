@@ -1,4 +1,5 @@
 
+using Common.Common.Handlers;
 using Common.Identity.API.Configuration;
 
 namespace Common.Identity.API
@@ -16,6 +17,7 @@ namespace Common.Identity.API
             .Build();
 
             builder.Configuration.AddConfiguration(configuration);
+            builder.AddLoggingConfiguration("IdentityAPI");
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
