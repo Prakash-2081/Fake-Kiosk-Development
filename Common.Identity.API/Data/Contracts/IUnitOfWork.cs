@@ -1,4 +1,5 @@
-﻿using Common.Identity.API.Departments.Contracts;
+﻿using Common.Identity.API.Common.Libraries.Contracts;
+using Common.Identity.API.Departments.Contracts;
 using Common.Identity.API.ModulePermissions.Contracts;
 using Common.Identity.API.ModulePermissions.Modules.Contracts;
 using Common.Identity.API.Permissions.Contracts;
@@ -14,6 +15,7 @@ namespace Common.Identity.API.Data.Contracts
         IModulePermissionRepository ModulePermission { get; }
         IRoleRepository Role { get; }
         IRoleModulePermissionRepository RoleModulePermission { get; }
+        ILibraryRepository Library { get; }
 
         IDepartmentRepository Department { get; }
         Task<string> SaveAsync();

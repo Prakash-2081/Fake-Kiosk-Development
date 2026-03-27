@@ -10,6 +10,7 @@ using Common.Identity.API.Permissions;
 using Common.Identity.API.Permissions.Contracts;
 using Common.Identity.API.Roles;
 using Common.Identity.API.Roles.Contracts;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 namespace Common.Identity.API.Configuration
@@ -20,6 +21,28 @@ namespace Common.Identity.API.Configuration
         {
             services.AddDbContext<IdentityDataContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
+
+            services.AddMassTransit(x =>
+            {
+                //x.AddConsumer<LibraryEventConsumer>();
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(configuration["RabbitMQ:Host"], h =>
+                    {
+                        h.Username(configuration["RabbitMQ:Username"]);
+                        h.Password(configuration["RabbitMQ:Password"]);
+                    });
+                    //cfg.ReceiveEndpoint("identity.library-event", e =>
+                    //{
+                    //    e.ConfigureConsumer<LibraryEventConsumer>(context);
+                    //});
+                });
+            });
+            //Waits until RabbitMQ bus is started
+            services.AddOptions<MassTransitHostOptions>().Configure(options =>
+            {
+                options.WaitUntilStarted = true;
+            });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IPermissionService, PermissionService>();

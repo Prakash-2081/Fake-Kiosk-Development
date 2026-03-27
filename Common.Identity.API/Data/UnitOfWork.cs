@@ -1,4 +1,6 @@
-﻿using Common.Identity.API.Data.Contracts;
+﻿using Common.Identity.API.Common.Libraries;
+using Common.Identity.API.Common.Libraries.Contracts;
+using Common.Identity.API.Data.Contracts;
 using Common.Identity.API.Departments;
 using Common.Identity.API.Departments.Contracts;
 using Common.Identity.API.ModulePermissions;
@@ -26,6 +28,7 @@ namespace Common.Identity.API.Data
             Role=new RoleRepository(db);
             RoleModulePermission = new RoleModulePermissionRepository(db);
             Department=new DepartmentRepository(db);
+            Library = new LibraryRepository(db);
         }
         public IPermissionRepository Permission { get; private set; }
         public IModuleRepository Module { get; private set; }
@@ -33,6 +36,7 @@ namespace Common.Identity.API.Data
         public IRoleRepository Role { get; private set; }
         public IRoleModulePermissionRepository RoleModulePermission { get; private set; }
         public IDepartmentRepository Department { get; private set; }
+        public ILibraryRepository Library { get; private set; }
 
         public Task BeginTransactionAysnc()
         {
